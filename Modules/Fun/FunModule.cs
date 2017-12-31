@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CountlessBot.Modules.Fun
 {
-    [Name("Fun"), Summary("Some fun commands to liven up the mood."), ModuleColor(Colors.GAMES_R, Colors.GAMES_G, Colors.GAMES_B)]
+    [Name("Fun"), Summary("Some fun commands to liven up the mood."), ModuleColor(Colors.FUN_R, Colors.FUN_G, Colors.FUN_B)]
     public class FunModule : DiscordModule
     {
         [Command("8ball"), Summary("Ask the magic 8-ball for guidence.")]

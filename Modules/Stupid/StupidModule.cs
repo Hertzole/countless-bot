@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CountlessBot.Modules.Stupid
 {
-    [Name("Stupid"), Summary("Stupid stuff."), ModuleColor(Colors.UTILITY_R, Colors.UTILITY_G, Colors.UTILITY_B)]
+    [Name("Stupid"), Summary("Stupid stuff."), ModuleColor(Colors.STUPID_R, Colors.STUPID_G, Colors.STUPID_B)]
     public class StupidModule : DiscordModule
     {
         private static string BleachPath { get { return BotHelpers.ProcessPath + "/countlessbot/resources/bleach.jpg"; } }
