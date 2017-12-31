@@ -37,8 +37,6 @@ namespace CountlessBot
 
         // A simple check used to see if the bot has been updated.
         private bool updated = false;
-        // A simple check used to see if the bot should announce the update.
-        private bool silentUpdate = false;
         // A simple check used to see if the bot has executed the ready function.
         private bool isReady = false;
 
@@ -87,7 +85,7 @@ namespace CountlessBot
         /// <summary>
         /// Starts the bot.
         /// </summary>
-        public async Task StartAsync(bool updated, bool silentUpdate = false)
+        public async Task StartAsync(bool updated)
         {
             try
             {
@@ -96,8 +94,6 @@ namespace CountlessBot
 
                 // Set the updated bool to the one given.
                 this.updated = updated;
-                // Set the silent update bool to the one given.
-                this.silentUpdate = silentUpdate;
                 // Set the start time to the current time.
                 StartTime = DateTime.UtcNow;
 
@@ -383,6 +379,10 @@ namespace CountlessBot
                 // Make sure to say that the ready function has been executed.
                 isReady = true;
 
+                // If the bot was updated, tell the owners.
+                if (updated)
+                    await SendMessageToOwner("Bot was updated to version " + Version);
+
                 // Setup game changing.
                 FiveMinuteTick += ChangeGame;
 
@@ -610,8 +610,7 @@ namespace CountlessBot
         /// <summary>
         /// Updates the bot.
         /// </summary>
-        /// <param name="silent">If true, the update will not be annoucned.</param>
-        public static bool Update(bool silent)
+        public static bool Update()
         {
             // Check to make sure if the update folder exists.
             if (!Directory.Exists(UpdatePath))
@@ -650,10 +649,8 @@ namespace CountlessBot
                 File.Move(newFiles[i], currentFilePath);
             }
 
-            // Generate the silent update arg string.
-            string silentUpdate = silent ? " silent-update" : "";
             // Start the new instance.
-            Process.Start(BotHelpers.FullProcessPath, $"update{silentUpdate}");
+            Process.Start(BotHelpers.FullProcessPath, $"update");
             // Close the current instance.
             Environment.Exit(0);
 

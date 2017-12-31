@@ -31,15 +31,13 @@ namespace CountlessBot
                     // If one of the arguments is the update argument, set updated to true.
                     if (args[i] == "update-clean" || args[i] == "update")
                         updated = true;
-                    else if (args[i] == "silent-update") // Check for silent update argument.
-                        silentUpdate = true;
                 }
 
                 // Always clean the directory from ".old" files.
                 CleanDirectory();
 
                 // Run the start method for the bot.
-                new CountlessBot().StartAsync(updated, silentUpdate).GetAwaiter().GetResult();
+                new CountlessBot().StartAsync(updated).GetAwaiter().GetResult();
             }
             // If something breaks, post it to the console.
             catch (Exception ex)
