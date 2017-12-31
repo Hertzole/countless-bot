@@ -30,6 +30,11 @@ namespace CountlessBot.Classes
     }
 
     /// <summary>
+    /// Makes the command hidden from the help commands.
+    /// </summary>
+    public class HiddenAttribute : Attribute { }
+
+    /// <summary>
     /// Makes it so only the bot owner (probably you) can run this command.
     /// </summary>
     public class BotOwnerRequiredAttribute : PreconditionAttribute

@@ -29,4 +29,13 @@
     <PackageReference Include="Discord.Net.Rest" Version="1.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="countlessbot\resources\potato.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="countlessbot\resources\rope.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

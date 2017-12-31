@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CountlessBot.Modules.Bot
 {
-    [Name("Bot"), Summary("Commands for bot owner(s)."), Group("bot")]
+    [Name("Bot"), Summary("Commands for bot owner(s)."), Group("bot"), BotOwnerRequired, ModuleColor(Colors.BOT_R, Colors.BOT_G, Colors.BOT_B)]
     public class BotModule : DiscordModule
     {
         [Command("avatar"), Summary("Sets a new avatar for the bot."), Alias("setavatar", "setpic", "pic"), BotOwnerRequired]

@@ -70,7 +70,7 @@ namespace CountlessBot.Models
             "Knock knock; Who's there?; Broken pencil; \"Broken pencil\" who?; ...Nevermind, it's pointless.",
             "Where do you find a cow with no legs? Right where you left it.",
             "\"You're telling me that I'm losing my job because Donald Trump won the election? WHY, BECAUSE I'M BLACK?!\" \"Mister President, we've been over this...\"",
-            "Son: \"Mom, Dad, I'm gay.\" Mom: *stars at Dad* Dad: *clenches fist* Mom: \"Don't!\" Dad: \*Sweats Profusely\* Mom: \"...\" Dad: \"HI GAY, I'M DAD\"",
+            "Son: \"Mom, Dad, I'm gay.\" Mom: *stars at Dad* Dad: *clenches fist* Mom: \"Don't!\" Dad: \\*Sweats Profusely\\* Mom: \"...\" Dad: \"HI GAY, I'M DAD\"",
             "Steve Jobs would've been a better president than Donald Trump. But it's a silly comparison really, it's like comparing apples to oranges.",
             "My girlfriend told me to take the spider out instead of killing it. We went and had some drinks. Cool guy. Wants to be a web developer.",
             "How do you milk sheep? With iPhone accessories.",

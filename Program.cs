@@ -22,8 +22,6 @@ namespace CountlessBot
 
                 // Determines if the bot has been updated.
                 bool updated = false;
-                // Determines if the bot update should be silent.
-                bool silentUpdate = false;
 
                 // Loop through all the arguments given to the program.
                 for (int i = 0; i < args.Length; i++)
