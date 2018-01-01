@@ -26,6 +26,8 @@ namespace CountlessBot.Models
             }
         }
 
+        // ID of the Guild where the poll is.
+        public ulong GuildID { get; set; } = 0;
         // The name of the poll.
         public string PollName { get; set; } = "";
         // The poll description.
@@ -39,8 +41,9 @@ namespace CountlessBot.Models
 
         public Poll() { }
 
-        public Poll(string name, string description, List<string> options, DateTime endsAt)
+        public Poll(ulong guildID, string name, string description, List<string> options, DateTime endsAt)
         {
+            GuildID = guildID;
             PollName = name;
             PollDescription = description;
             options.ForEach(o => Options.Add(new PollOption(o)));

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace CountlessBot.Services
 {
@@ -20,6 +21,107 @@ namespace CountlessBot.Services
             Polls = GetPollsFromFiles();
         }
 
+        /// <summary>
+        /// Adds a poll to the database.
+        /// </summary>
+        /// <param name="channelID"></param>
+        /// <param name="poll"></param>
+        /// <returns></returns>
+        public bool AddPoll(ulong channelID, Poll poll)
+        {
+            try
+            {
+                // Make sure the polls path exists.
+                if (!Directory.Exists(PollsPath))
+                    Directory.CreateDirectory(PollsPath);
+
+                // If there are polls and the polls already contains the channel id, stop here.
+                if (Polls.Any() && Polls.ContainsKey(channelID))
+                    return false;
+
+                // Add the poll.
+                Polls.Add(channelID, poll);
+                // Write the poll file.
+                File.WriteAllText(PollsPath + channelID + ".poll", JsonConvert.SerializeObject(poll));
+                // Return a result of true.
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Removes a poll from the database.
+        /// </summary>
+        /// <param name="channelID"></param>
+        /// <returns></returns>
+        public bool RemovePoll(ulong channelID)
+        {
+            try
+            {
+                // Make sure it doesn't delete anything while being offline.
+                if (CountlessBot.Instance.Client.ConnectionState != Discord.ConnectionState.Connected)
+                    return false;
+
+                // Make sure the polls path exists.
+                if (!Directory.Exists(PollsPath))
+                    Directory.CreateDirectory(PollsPath);
+
+                // If there aren't any polls or the poll with the channel id doesn't exist, stop here.
+                if (!Polls.Any() || !Polls.ContainsKey(channelID))
+                    return false;
+
+                // Remove the poll.
+                Polls.Remove(channelID);
+                // Check if the file exists and if it does, delete it.
+                if (File.Exists(PollsPath + channelID + ".poll"))
+                    File.Delete(PollsPath + channelID + ".poll");
+
+                // Return a result of true.
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Updates an existing poll.
+        /// </summary>
+        /// <param name="channelID"></param>
+        /// <param name="poll"></param>
+        public void UpdatePoll(ulong channelID, Poll poll)
+        {
+            try
+            {
+                // Make sure the polls path exists.
+                if (!Directory.Exists(PollsPath))
+                    Directory.CreateDirectory(PollsPath);
+
+                // If there aren't any polls or the poll with the channel id doesn't exist, stop here.
+                if (!Polls.Any() || !Polls.ContainsKey(channelID))
+                    return;
+
+                // Update the poll at the channel id.
+                Polls[channelID] = poll;
+                // Write the new file.
+                File.WriteAllText(PollsPath + channelID + ".poll", JsonConvert.SerializeObject(poll));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Gets all the polls from files.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<ulong, Poll> GetPollsFromFiles()
         {
             try
