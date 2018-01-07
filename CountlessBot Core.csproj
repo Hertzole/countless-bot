@@ -19,7 +19,7 @@
     <OutputPath>Builds\Release\</OutputPath>
     <Prefer32Bit>True</Prefer32Bit>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	<RuntimeIdentifier>linux-arm</RuntimeIdentifier>
+	<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>

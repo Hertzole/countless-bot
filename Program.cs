@@ -12,7 +12,7 @@ namespace CountlessBot
 #if DEBUG
             Console.Title = "CountlessBot - DEBUG";
 #else
-            Console.CountlessBot = "HertzBot";
+            Console.Title = "CountlessBot";
 #endif
 
             // Put in try *just in case*.
